@@ -33,14 +33,15 @@ public class SftpUtil {
     public void sessionConnect(String host, int port, String username, String password) {
         try {
             this.jsch = new JSch();
-            this.jsch.addIdentity("C:\\Users\\Cwhite\\IdeaProjects\\monSftp_1\\src\\main\\resources\\136k");//设置为密钥
+            this.jsch.addIdentity("src/main/resources/136k");//设置为密钥
             this.sshSession = jsch.getSession(username, host, port);
             //this.sshSession.setPassword(password);//密码登录
             Properties sshConfig = new Properties();
             //sshConfig.put("StrictHostKeyChecking", "no");
-            sshConfig.put("StrictHostKeyChecking", "yes"); //指定密钥验证方式。
-            this.sshSession.setConfig(sshConfig);
-            //this.sshSession.setConfig("PreferredAuthentications", "publickey"); //指定密钥验证方式。
+            //this.sshSession.setConfig(sshConfig);
+            this.sshSession.setConfig("userauth.gssapi-with-mic", "no");
+            this.sshSession.setConfig("StrictHostKeyChecking", "no"); //指定密钥验证方式。
+            this.sshSession.setConfig("PreferredAuthentications", "publickey"); //指定密钥验证方式。
             this.sshSession.connect();
         } catch (Exception e) {
             log.error("SftpUtil Session host=[" + host + "];port=[" + port + "];user=[" + username

@@ -34,6 +34,11 @@
             <artifactId>slf4j-api</artifactId>
             <version>2.0.3</version>
         </dependency>
+        <dependency>
+            <groupId>com.adp.marketplace.api.product.userinfo</groupId>
+            <artifactId>ADPUserInfo</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
     <properties>
